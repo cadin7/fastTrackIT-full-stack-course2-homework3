@@ -4,9 +4,10 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.IntSummaryStatistics;
 import java.util.List;
+
+import static java.util.Collections.unmodifiableList;
 
 public class Gym {
     private final List<GymSubscription> gymSubscriptions;
@@ -16,7 +17,7 @@ public class Gym {
     }
 
     public List<GymSubscription> getSubscriptions() {
-        return Collections.unmodifiableList(gymSubscriptions);
+        return unmodifiableList(gymSubscriptions);
     }
 
     public int getYoungestMemberYear() {

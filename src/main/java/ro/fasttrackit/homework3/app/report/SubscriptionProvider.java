@@ -4,6 +4,6 @@ import ro.fasttrackit.homework3.app.gym.GymSubscription;
 
 import java.util.List;
 
-public interface GymProvider {
+public interface SubscriptionProvider {
     List<GymSubscription> readSubscriptions();
 }

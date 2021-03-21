@@ -8,7 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+
+import static java.util.Map.Entry.comparingByKey;
+import static java.util.stream.Collectors.*;
 
 abstract class PersonReportGenerator {
     public void generateReport(String outputFile) throws IOException {
@@ -19,10 +21,10 @@ abstract class PersonReportGenerator {
         writeReport(
                 readPersons().stream()
                         .map(CategorizePersons::new)
-                        .collect(Collectors.toList())
+                        .collect(toList())
                         .stream()
-                        .collect(Collectors.groupingBy(CategorizePersons::getAgeRange,
-                                Collectors.mapping(CategorizePersons::getFullName, Collectors.toList())))
+                        .collect(groupingBy(CategorizePersons::getAgeRange,
+                                mapping(CategorizePersons::getFullName, toList())))
                 , outputFile);
     }
 
@@ -38,7 +40,7 @@ abstract class PersonReportGenerator {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
             persons.entrySet()
                     .stream()
-                    .sorted(Map.Entry.comparingByKey())
+                    .sorted(comparingByKey())
                     .map(entry -> entry.getKey() + ": " + entry.getValue())
                     .forEach(names -> writeLine(writer, names.replaceAll("[\\[\\]]", "")));
         }

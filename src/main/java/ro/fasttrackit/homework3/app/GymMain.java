@@ -3,7 +3,7 @@ package ro.fasttrackit.homework3.app;
 import ro.fasttrackit.homework3.app.gym.Gym;
 import ro.fasttrackit.homework3.app.gym.GymMember;
 import ro.fasttrackit.homework3.app.gym.GymSubscription;
-import ro.fasttrackit.homework3.app.report.FromMemoryGymReportReader;
+import ro.fasttrackit.homework3.app.report.FromMemorySubscriptionReportReader;
 import ro.fasttrackit.homework3.app.report.GymReportGenerator;
 
 import java.io.IOException;
@@ -41,7 +41,7 @@ public class GymMain {
     }
 
     private static void generateReportForGym(Gym gym) throws IOException {
-        new GymReportGenerator(new FromMemoryGymReportReader(gym)).generateSubscriptionReportByTimeLeft();
+        new GymReportGenerator(new FromMemorySubscriptionReportReader(gym)).generateSubscriptionReportByTimeLeft();
     }
 
     private static void printExercises(Gym gym) {

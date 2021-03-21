@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Map.Entry.comparingByKey;
 import static java.util.stream.Collectors.toList;
 
 public class PersonReportWriter {
@@ -24,7 +25,7 @@ public class PersonReportWriter {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
             persons.entrySet()
                     .stream()
-                    .sorted(Map.Entry.comparingByKey())
+                    .sorted(comparingByKey())
                     .map(entry -> entry.getKey() + ": " + entry.getValue())
                     .forEach(names -> writeLine(writer, names.replaceAll("[\\[\\]]", "")));
         }
@@ -45,3 +46,4 @@ public class PersonReportWriter {
         }
     }
 }
+

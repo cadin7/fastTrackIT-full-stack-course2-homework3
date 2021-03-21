@@ -3,7 +3,8 @@ package ro.fasttrackit.homework3.persons.composition;
 import ro.fasttrackit.homework3.persons.CategorizePersons;
 
 import java.io.IOException;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.*;
 
 public class PersonReportGenerator {
     private final PersonProvider personProvider;
@@ -24,10 +25,10 @@ public class PersonReportGenerator {
                 personProvider.readPersons()
                         .stream()
                         .map(CategorizePersons::new)
-                        .collect(Collectors.toList())
+                        .collect(toList())
                         .stream()
-                        .collect(Collectors.groupingBy(CategorizePersons::getAgeRange,
-                                Collectors.mapping(CategorizePersons::getFullName, Collectors.toList())))
+                        .collect(groupingBy(CategorizePersons::getAgeRange,
+                                mapping(CategorizePersons::getFullName, toList())))
                 , outputFile);
     }
 }
